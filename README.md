@@ -1,1 +1,1 @@
-# front-end-study
+# 一些前端知识学习记录
