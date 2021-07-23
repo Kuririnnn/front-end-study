@@ -1,0 +1,11 @@
+console.log(!!1);
+console.log(!!0);
+console.log(!!{});
+console.log(!![]);
+console.log(!!'aaa');
+console.log(!!'');
+console.log(!!'0');
+console.log(!!true);
+console.log(!!false);
+console.log(!!null);
+console.log(!!undefined);

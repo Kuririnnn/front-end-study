@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		#demo {
+			width: 300px;
+			padding: 10px;
+			position: absolute;
+			left: 200px;
+			border: 1px solid;
+		}
+		
+		#demo>img {
+			display: block;
+			position: relative;
+			cursor: pointer;
+		}
+		
+		.animation_border {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+		
+		.animation_border {
+			/*倾斜性背景*/
+			background-image: -webkit-linear-gradient(45deg, red 25%, transparent 25%, transparent 50%, red 50%, red 75%, transparent);
+			background-image: -moz-linear-gradient(45deg, red 25%, transparent 25%, transparent 50%, red 50%, red 75%, transparent);
+			background-image: linear-gradient(45deg, red 25%, transparent 25%, transparent 50%, red 50%, red 75%, transparent 75%, transparent);
+		}
+		
+		.animation_border {
+			background-size: 30px 30px;
+		}
+		
+		@-webkit-keyframes animate {
+			/*定义动画webkit*/
+			from {
+				background-position: 0 0;
+			}
+			to {
+				background-position: 60px 30px;
+			}
+		}
+		
+		@-moz-keyframes animate {
+			/*定义动画opera*/
+			from {
+				background-position: 0 0;
+			}
+			to {
+				background-position: 60px 30px;
+			}
+		}
+		
+		@keyframes animate {
+			/*定义动画w3c*/
+			from {
+				background-position: 0 0;
+			}
+			to {
+				background-position: 60px 30px;
+			}
+		}
+		
+		.animation_border {
+			-webkit-animation: animate 0.5s linear infinite;
+			-moz-animation: animate 0.5s linear infinite;
+			animation: animate 0.5s linear infinite;
+		}
+	</style>
+ 
+	<body>
+		<div id="demo">
+			<div class="animation_border"></div>
+			<img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1298196854,4096730639&fm=26&gp=0.jpg" width="300" height="300" alt="" />
+		</div>
+	</body>
+ 
+</html>

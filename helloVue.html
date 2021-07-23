@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Vue</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{message}} {{name}}
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue',
+                name: 'kuririnnnn'
+            }
+        });
+        console.log(app);
+    </script>
+    <div id="app1">
+        {{a}}
+    </div>
+    <script type="text/javascript">
+        var data = { a: 1 };
+        var vm = new Vue({
+            el: '#app1',
+            data: data
+        });
+        setTimeout(() => {
+            data.a = '改变了data的属性'
+        }, 5000);
+        setTimeout(() => {
+            vm.a = '又改变了vm中a的值'
+            console.log(data);
+        }, 7000);
+        vm.$watch('a', (newV, oldV) => {
+            alert(`new-${newV}, old-${oldV}`);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>empty选择器</title>
+    <style type="text/css">
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            display: inline-block;
+            background: #999;
+            border: 1px solid #585858;
+            height: 200px;
+            width: 200px;
+            margin-right: 15px;
+        }
+
+        .box:empty {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box"></div>
+        <div class="box">With Content</div>
+    </div>
+</body>
+
+</html>

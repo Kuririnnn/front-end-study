@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>图表</title>
+   <head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="./js/echarts.js"></script>
+</head>
+</head>
+<body>
+    <div style="height: 500px; width: 500px;" id="main">
+  </div>
+  <script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var  option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b} : {c} 条',
+         position: ['50%', '50%']
+    },
+    series: [
+        {
+            type: 'pie',
+            radius: ['50%', '70%'],
+            selectedMode: 'single',
+            
+            data: [
+                
+                {value: 535, name: '荆州'},
+                {value: 510, name: '兖州'},
+                {value: 634, name: '益州'},
+                {value: 735, name: '西凉'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                },
+                label: {
+                    show: true,
+                    fontSize: '30',
+                    fontWeight: 'bold'
+                }
+            }
+        }
+    ]
+};
+var currentIndex = -1;
+
+setInterval(function () {
+    var dataLen = option.series[0].data.length;
+    // 取消之前高亮的图形
+    myChart.dispatchAction({
+        type: 'downplay',
+        seriesIndex: 0,
+        dataIndex: currentIndex
+    });
+    currentIndex = (currentIndex + 1) % dataLen;
+    // 高亮当前图形
+    myChart.dispatchAction({
+        type: 'highlight',
+        seriesIndex: 0,
+        dataIndex: currentIndex
+    });
+    // 显示 tooltip
+    myChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: currentIndex
+    });
+}, 3000);
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+  </script>
+</body>
+</html>

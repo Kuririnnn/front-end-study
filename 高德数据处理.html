@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高德数据处理</title>
+</head>
+
+<body>
+    <input id='input' style='width: 200px;' />
+    <button id='button'>转换</button>
+    <div>输入框输入数据格式：
+        [{
+        "Q": 29.283174,
+        "R": 118.07550600000002,
+        "lng": 118.075506,
+        "lat": 29.283174
+        },{
+        "Q": 29.284864,
+        "R": 118.073916,
+        "lng": 118.073916,
+        "lat": 29.284864
+        },{
+        "Q": 29.283174,
+        "R": 118.07550600000002,
+        "lng": 118.075506,
+        "lat": 29.283174
+        }]</div>
+        <br />
+    <div id='div1'></div>
+    <script type="text/javascript">
+        const button = document.getElementById('button');
+        button.onclick = () => {
+            let value = document.getElementById('input').value;
+            if(!value){
+                alert('请输入数据');
+            }
+            let data = JSON.parse(value);
+            let result = 'POLYGON ((';
+            for (let i = 0, il = data.length; i < il; i++) {
+                result = result + data[i].lng + ' ' + data[i].lat;
+                if (i != data.length - 1) {
+                    result = result + ', ';
+                }
+            }
+            result = result + '))';
+            document.getElementById("div1").innerHTML = `转换后结果：${result}`;
+        }
+    </script>
+</body>
+
+</html>

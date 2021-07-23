@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flexbox布局</title>
+    <style type="text/css">
+        form {
+            display: flex;
+        }
+
+        input {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 弹性布局的项目（item）默认没有间隔。 -->
+    <!-- flex-grow属性默认等于0，即使用本来的宽度，不拉伸。等于1时，就表示该项目宽度拉伸，占据当前行的所有剩余宽度。 -->
+    <!-- 
+        弹性布局默认不改变项目的宽度，但是它默认改变项目的高度。如果项目没有显式指定高度，就将占据容器的所有高度。 
+        align-self属性可以改变这种行为。
+        如果项目很多，一个个地设置align-self属性就很麻烦。这时，可以在容器元素（本例为表单）设置align-items属性，它的值被所有子项目的align-self属性继承。
+    -->
+
+    <form>
+        <input type="email" name="email">
+        <button type="submit">Send</button>
+    </form>
+</body>
+
+</html>

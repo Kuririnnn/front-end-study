@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue组件入门</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button-counter title="first" @clicknow="clicknow">
+            <h2>hi…h2</h2>
+        </button-counter>
+        <br />
+        <button-counter title="second"></button-counter>
+        <test></test>
+    </div>
+    <script type="text/javascript">
+        // 全局注册组件
+        Vue.component('button-counter', {
+            props: ['title'],
+            data: function() {
+                return {
+                    count: 0
+                }
+            },
+            template: '<div><h1>hi···</h1><button v-on:click="clickFunc">{{title}} You clicked me {{ count }} times.</button><slot></slot></div>',
+            methods: {
+                clickFunc: function() {
+                    this.count ++;
+                    this.$emit('clicknow', this.count);
+                }
+            },
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                clicknow: function(e) {
+                    console.log(e)
+                }
+            },
+            // 局部组建注册
+            component: {
+                test: {
+                    template: "<h2>h2...</h2>"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

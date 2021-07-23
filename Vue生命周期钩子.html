@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue声明周期钩子</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">{{msg}}</div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hi vue'
+            },
+            beforeCreate: function () {
+                console.log('beforeCreate');
+            },
+            created: function () {
+                console.log('created');
+            },
+            beforeMount: function () {
+                console.log('beforeMount');
+            },
+            mounted: function () {
+                console.log('mounted');
+            },
+            beforeUpdate: function () {
+                console.log('beforeUpdate');
+            },
+            updated: function () {
+                console.log('updated');
+            }
+        });
+        setTimeout(function () {
+            console.log('before');
+            vm.msg = 'change……';
+            console.log('after');
+        }, 3000);
+    </script>
+</body>
+
+</html>

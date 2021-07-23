@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex布局</title>
+    <script type="text/javascript" src="./../js//jquery.min.js"></script>
+    <style>
+        .filter_list_wrap {
+            position: relative;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .filter_list_wrap dl {
+            width: 1032px;
+            height: 45px;
+            overflow: hidden;
+            position: relative;
+            left: 0;
+            padding-left: 70px;
+            font-size: 14px;
+        }
+
+        .filter_list_wrap dl dt {
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 72px;
+            color: #b0b0b0;
+        }
+
+        .filter_list_wrap dl dd {
+            width: 172px;
+            cursor: pointer;
+            padding: 12px 0;
+            float: left;
+        }
+
+        .filter_list_wrap dl dd a {
+            color: #424242;
+        }
+
+        .filter_list_wrap dl dd.active {
+            color: #ff6700;
+        }
+
+        .filter_list_wrap dl dd.active a {
+            color: #ff6700;
+        }
+
+        .filter_list_wrap dl dd:hover {
+            color: #ff6700;
+        }
+
+        .filter_list_wrap dl dd:hover a {
+            color: #ff6700;
+        }
+
+        .filter_list_wrap dl.h1 {
+            height: auto;
+        }
+
+        .filter_list_wrap>a {
+            position: absolute;
+            right: 0;
+            top: 11px;
+            position: absolute;
+            right: 0;
+            top: 10px;
+            height: 24px;
+            line-height: 24px;
+            color: #757575;
+        }
+
+        .filter_list_wrap>a i {
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 5px;
+        }
+
+        .filter_list_wrap:first-child {
+            border-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="filter_list_wrap">
+        <dl>
+            <dt>分类：</dt>
+            <dd class=" active">全部</dd>
+            <dd><a href="javascript:void(0);">小米平板</a></dd>
+            <dd><a href="javascript:void(0);">保护套 / 贴膜</a></dd>
+            <dd><a href="javascript:void(0);">路由器 / 智能硬件</a></dd>
+            <dd><a href="javascript:void(0);">移动电源 / 插线板</a></dd>
+            <dd><a href="javascript:void(0);">电池 / 存储卡</a></dd>
+            <dd><a href="javascript:void(0);">耳机 / 音箱</a></dd>
+            <dd><a href="javascript:void(0);">线材 / 支架 / 存储卡</a></dd>
+            <dd><a href="javascript:void(0);">箱包 / 服饰</a></dd>
+            <dd><a href="javascript:void(0);">米兔 / 生活周边</a></dd>
+            <dd><a href="javascript:void(0);">配件优惠套装</a></dd>
+            <dd><a href="javascript:void(0);">笔记本电脑配件</a></dd>
+            <dd><a href="javascript:void(0);">出行／穿戴</a></dd>
+            <dd><a href="javascript:void(0);">工具</a></dd>
+            <dd><a href="javascript:void(0);">生活 / 箱包</a></dd>
+            <dd><a href="javascript:void(0);">保障服务</a></dd>
+            <dd><a href="javascript:void(0);">第三方平台分类</a></dd>
+            <dd><a href="javascript:void(0);">大家电</a></dd>
+            <dd><a href="javascript:void(0);">VR眼镜</a></dd>
+            <dd><a href="javascript:void(0);">手机套装</a></dd>
+            <dd><a href="javascript:void(0);">智能家居</a></dd>
+            <dd><a href="javascript:void(0);">笔记本电脑</a></dd>
+            <dd><a href="javascript:void(0);">服务</a></dd>
+            <dd><a href="javascript:void(0);">小米电视主机</a></dd>
+            <dd><a href="javascript:void(0);">健康 / 儿童</a></dd>
+            <dd><a href="javascript:void(0);">低音炮</a></dd>
+            <dd><a href="javascript:void(0);">入场券</a></dd>
+            <dd><a href="javascript:void(0);">电视配件</a></dd>
+            <dd><a href="javascript:void(0);">小米盒子</a></dd>
+            <dd><a href="javascript:void(0);">小米电视</a></dd>
+            <dd><a href="javascript:void(0);">手机</a></dd>
+            <dd><a href="javascript:void(0);">家电／插线板</a></dd>
+        </dl>
+        <a href="javascript:void(0);" class="more">更多<i class="iconfont icon-arrow-down"></i></a>
+    </div>
+
+    <script type="text/javascript">
+        filter();
+        function filter() {
+            var xbool = [true, true, true];//定义数组 存放布尔值情况
+            $('.more').click(function () {//展开按钮 绑定点击事件
+                var index = $(this).parent().index();//根据父级的index知道点击的哪儿个 避免相互影响
+                var $dl = $(this).siblings('dl');
+                var curHeight = 45;//获取设定的height值
+                var autoHeight = $dl.css('height', 'auto').height();//获取height为auto的值
+                if (xbool[index]) {//判断对应的 布尔值 避免相互影响
+                    $dl.height(curHeight).animate({ "height": autoHeight }, 300);
+                    xbool[index] = false;//改变对应的 布尔值 避免相互影响
+                }
+                else {
+                    $dl.height(autoHeight).animate({ "height": curHeight }, 300);
+                    xbool[index] = true;
+
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>

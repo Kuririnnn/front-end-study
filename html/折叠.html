@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex布局</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="section">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p>
+        </div>
+        <div class="section collapsible">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p>
+        </div>
+        <div class="section">
+            <p>Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                ea commodo consequat.</p>
+        </div>
+    </div>
+
+    <button id="toggle-button">Toggle collapse</button>
+    <script type="text/javascript">
+        function collapseSection(element) {
+            var sectionHeight = element.scrollHeight;
+
+            var elementTransition = element.style.transition;
+            element.style.transition = '';
+
+            requestAnimationFrame(function () {
+                element.style.height = sectionHeight + 'px';
+                element.style.transition = elementTransition;
+
+                requestAnimationFrame(function () {
+                    element.style.height = 0 + 'px';
+                });
+            });
+
+            element.setAttribute('data-collapsed', 'true');
+        }
+
+        function expandSection(element) {
+            var sectionHeight = element.scrollHeight;
+            element.style.height = sectionHeight + 'px';
+
+            element.addEventListener('transitionend', function (e) {
+                element.removeEventListener('transitionend', arguments.callee);
+                element.style.height = null;
+            });
+
+            element.setAttribute('data-collapsed', 'false');
+        }
+
+        document.querySelector('#toggle-button').addEventListener('click', function (e) {
+            var section = document.querySelector('.section.collapsible');
+            var isCollapsed = section.getAttribute('data-collapsed') === 'true';
+
+            if (isCollapsed) {
+                expandSection(section)
+                section.setAttribute('data-collapsed', 'false')
+            } else {
+                collapseSection(section)
+            }
+        });</script>
+</body>
+
+</html>

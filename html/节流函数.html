@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流函数</title>
+</head>
+
+<body>
+    <div id="content"
+        style="height:150px;line-height:150px;text-align:center; color: #fff;background-color:#ccc;font-size:80px;">
+    </div>
+
+    <script>
+        //指连续触发事件但是在 n 秒中只执行一次函数。即 2n 秒内执行 2 次... 。节流如字面意思，会稀释函数的执行频率。
+        // function throttle(func, wait) {
+        //     let previous = 0;
+        //     return function() {
+        //         let now = Date.now();
+        //         let context = this;
+        //         let args = arguments;
+        //         if(now - previous > wait) {
+        //             func.apply(content, args);
+        //             previous = now;
+        //         }
+        //     }
+        // }
+
+        // 定时器版
+        function throttle(func, wait) {
+            let timeout;
+            return function() {
+                let context = this;
+                let args = arguments;
+                if(!timeout) {
+                    timeout = setTimeout(() => {
+                        timeout = null;
+                        func.apply(context, args);
+                    }, wait);
+                }
+            }
+        }
+
+        let num = 1;
+        let content = document.getElementById('content');
+
+        function count() {
+            content.innerHTML = num++;
+        };
+        // content.onmousemove = count;
+        content.onmousemove = throttle(count, 1000);
+    </script>
+</body>
+
+</html>

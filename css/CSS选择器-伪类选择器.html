@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS选择器-伪类选择器</title>
+    <style type="text/css">
+        p:first-child {
+            color: red;
+        }
+
+        p:last-child {
+            color: blue;
+        }
+
+        p:nth-child(2) {
+            color: yellow;
+        }
+
+        span {
+
+            background: yellow;
+
+        }
+
+        span:hover::before {
+
+            content: "duang";
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+        <p>p4</p>
+    </div>
+    <span>222</span>
+</body>
+
+</html>

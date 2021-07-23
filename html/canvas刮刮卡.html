@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas刮刮卡</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        img {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<img src="4afbfbedab64034f83ae1a05a2c379310a551d56.jpg" alt="">
+<canvas id="canvas" width="400" height="400" style=" position: absolute;left: 0"></canvas>
+<script>
+    let canvas = document.getElementById('canvas');
+    let cxt = canvas.getContext('2d');
+
+    let x = 0;
+    let y = 0;
+    let curX = 0;
+    let curY = 0;
+    let arrX = [];
+    let arrY = [];
+    let countX = 0;
+    let countY = 0;
+    imgDataLen = cxt.getImageData(0, 0, canvas.width, canvas.height).data.length;
+
+    cxt.fillStyle = 'black';
+    cxt.fillRect(0, 0, canvas.width, canvas.height);
+    cxt.globalCompositeOperation = "destination-out";
+
+
+    function f(e) {
+        curX = e.clientX - canvas.offsetLeft;
+        curY = e.clientY - canvas.offsetTop;
+        if (x !== 0 && y !== 0) {
+            cxt.beginPath();
+            cxt.lineCap = "round";
+            cxt.lineWidth = 20;
+            cxt.moveTo(x, y);
+            cxt.lineTo(curX, curY);
+            cxt.stroke();
+            arrX.push(curX);
+            arrY.push(curY);
+        }
+        x = curX;
+        y = curY;
+    }
+
+
+    canvas.onmousedown = function () {
+        x = 0;
+        y = 0;
+        // 开始刮卡
+        canvas.addEventListener('mousemove', f);
+    };
+
+    let a = [];
+    let b = [];
+    canvas.onmouseup = function () {
+        a = [...new Set(arrX)];
+        b = [...new Set(arrY)];
+
+        a.map((item, index) => {
+            countX += item + a[index + 1] ? a[index + 1] : 0
+        });
+        b.map((item, index) => {
+            countY += item + b[index + 1] ? b[index + 1] : 0
+        });
+
+        // 颜色全部透明露出图片
+        if ((countX + countY) >= imgDataLen / 4) {
+            cxt.fillStyle = 'black';
+            cxt.fillRect(0, 0, canvas.width, canvas.height);
+            arrX = [];
+            arrY = [];
+            countX = 0;
+            countY = 0;
+        }
+        canvas.removeEventListener('mousemove', f)
+    };
+
+    canvas.onmouseleave = function () {
+        canvas.removeEventListener('mousemove', f)
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <title>
+        settimeout
+    </title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <p>
+        <input type="text" id="input" value="" />
+        <span id="preview"></span>
+    </p>
+</body>
+<script type="text/javascript">
+    (function () {
+        function $(id) {
+            return document.getElementById(id);
+        }
+        $('input').onkeypress = function () {
+            // $('preview').innerHTML = this.value;
+            setTimeout(function(){$('preview').innerHTML = $('input').value;},0);
+        }
+    })();
+</script>
+
+</html>

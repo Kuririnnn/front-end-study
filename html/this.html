@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+
+<body>
+
+    <script>
+        console.log(this);
+        var a = 'aaaa';
+        console.log(this.a);
+        console.log(window.a);
+
+        var name = 'li';
+        function sayName() {
+            var name = 'lee';
+            console.log(this.name);
+            console.log(this);
+        }
+        sayName();
+        console.log(this);
+
+        function foo() {
+            console.log(this.age);
+            console.log(this);
+        }
+        var obj1 = {
+            age: 15,
+            foo: foo
+        }
+        var obj2 = {
+            age: 18,
+            obj1: obj1
+        }
+        obj2.obj1.foo();
+    </script>
+</body>
+
+</html>

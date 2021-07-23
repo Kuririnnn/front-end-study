@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串去重</title>
+</head>
+
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <script type="text/javascript">
+        var str = "1233fddfd&3434fdsaff&454545&4545444rfdsfds&545gdsgs";
+        document.getElementById("div1").innerHTML = "字符串去重前" + str;
+        var n = "";
+        var s = "";
+        for (var i = 0; i < str.length; i++) {
+            if ((str[i] >= 0 && str[i] <= 9) && n.indexOf(str[i]) == -1) {
+                n += str[i];
+            } else if ((str.charCodeAt(i) >= 97 && str.charCodeAt(i) <= 122) && s.indexOf(str[i]) == -1) {
+                s += str[i];
+            }
+        }
+        console.log(n + s); //12345fdsarg
+        document.getElementById("div2").innerHTML = "字符串去重后" + n + s;
+    </script>
+</body>
+
+</html>

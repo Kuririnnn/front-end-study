@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue模板语法-指令（Directives）</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-if="seen">你能看到</p>
+        <a v-bind:href="url">···</a>
+        <div @click="click1">
+            <div @click.stop="click2">
+                点击事件的冒泡
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                seen: true,
+                url: 'http://www.baidu.com'
+            },
+            methods: {
+                click1: function () {
+                    alert('click1');
+                },
+                click2: function () {
+                    alert('click2');
+                }
+            },
+        })
+        setTimeout(function () {
+            vm.seen = false;
+        }, 3000);
+    </script>
+</body>
+
+</html>

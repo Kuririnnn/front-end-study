@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue列表渲染</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) in items" :key="index">
+                {{item.message}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="value, key in object" :key="key">
+                {{key}}: {{ value }}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                items: [
+                    { message: 'fucking' },
+                    { message: 'awesome' }
+                ],
+                object: {
+                    name: 'kuririn',
+                    age: 26
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

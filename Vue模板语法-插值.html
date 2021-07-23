@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue模板语法-插值</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}
+        <p>Using mustaches: {{rawHtml}}</p>
+        <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+        <p v-html="rawHtml">Using v-html directive: </p>
+        <p v-html="rawHtml"></p>
+        <div v-bind:class="color">test……</div>
+        <p>{{number + 1}}</p>
+        <p>{{ok ? 'YES' : 'NO'}}</p>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hi vue',
+                rawHtml: '<span style="color: red">this is should be red</span>',
+                color: 'red',
+                number: 10,
+                ok: false
+            }
+        });
+        vm.msg = 'hi…';
+    </script>
+    <style type="text/css">
+        .red {
+            color: red;
+        }
+    </style>
+</body>
+
+</html>

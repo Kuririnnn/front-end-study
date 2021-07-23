@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mapbox</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+
+<body>
+    <div id='map' style='position: fixed; width: 98%; height: 98%;'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFvcmV5IiwiYSI6ImNqNWhrenIwcDFvbXUyd3I2bTJxYzZ4em8ifQ.KHZIehQuWW9AsMaGtATdwA'; // 设置MapBox访问令牌
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9'
+        });
+        var nav = new mapboxgl.NavigationControl();
+        map.addControl(nav, 'top-left');
+        var geolacate = new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHeightAccuracy: true
+            },
+            trackUserLocation: true
+        });
+        map.addControl(geolacate);
+        var scale = new mapboxgl.ScaleControl({
+            maxWidth: 80,
+            unit: 'metric'
+        });
+        map.addControl(scale);
+        var fullScreen = new mapboxgl.FullscreenControl();
+        map.addControl(fullScreen);
+
+        var img = new Image();
+        img.src = './img/down_arrow.png';
+        var popup = new mapboxgl.Popup({
+            offset: {
+                'bottom': [0, -42]
+            }
+        }).setHTML('<h1>Hello MapboxGL</h1>');
+        var marker = new mapboxgl.Marker(img, { offset: { x: 0, y: -20.5 } })
+            .setLngLat([104.06, 30.67])
+            .setPopup(popup)
+            .addTo(map);
+        map.on('load', function () {
+            map.addSource('polySet1', {
+                type: 'geojson',
+                data: {
+                    features: [
+                        {
+                            type: 'Feature',
+                            geometry: {
+                                coordinates: [
+                                    [
+                                        [
+                                            104.1,
+                                            30.67
+                                        ],
+                                        [
+                                            104.3,
+                                            30.67
+                                        ],
+                                        [
+                                            104.2,
+                                            30.87
+                                        ]
+                                    ]
+                                ],
+                                type: 'Polygon'
+                            }
+                        }
+                    ],
+                    type: 'FeatureCollection'
+                }
+            });
+            map.addLayer({
+                id: 'polyLayer1',
+                type: 'fill',
+                source: 'polySet1',
+                paint: {
+                    'fill-color': 'blue',
+                    'fill-opacity': 0.8
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

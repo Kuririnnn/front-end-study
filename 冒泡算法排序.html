@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒泡算法排序</title>
+</head>
+
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <script type="text/javascript">
+        var arr = [1, 67, 9, 2, 3, 4, 1, 4, 5, 1, 4];
+        document.getElementById("div1").innerHTML = "冒泡排序前" + arr;
+        for (var i = 0, il = arr.length; i < il; i++) {
+            for (var j = 0, jl = arr.length; j < jl; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    var temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        document.getElementById("div2").innerHTML = "冒泡排序后" + arr;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue事件</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="counter += 1">数值： {{ counter }}</button>
+        <br />
+        <button v-on:click="greet('abc', $event)">Greet</button>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                counter: 0
+            },
+            methods: {
+                greet: function (str, e) {
+                    alert(str);
+                    console.log(e);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
