@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素塌陷</title>
+    <style type="text/css">
+        .parent {}
+
+        .child {
+            background: yellow;
+            width: 150px;
+            height: 150px;
+            float: left;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        描述：
+        在文档流中，父元素的高度默认是被子元素撑开的，也就是子元素多高，父元素就多高。但是当子元素设置浮动之后，子元素会完全脱离文档流，
+        此时将会导致子元素无法撑起父元素的高度，导致父元素的高度塌陷。
+
+        1.给父元素加高度；问题：当子盒子的高度大于父盒子时，会溢出；
+
+        2父元素触发BFC
+
+        根据W3C标准，在页面中元素都有一个隐藏的属性叫Block Formatting Context，简称BFC，该属性可以设置打开或者关闭，默认是关闭的。
+
+        当开启BFC后，元素将会具有以下特性：
+
+            元素的垂直外边距不会和子元素重叠
+            开启BFC的元素不会被浮动元素所覆盖
+            开启BFC的元素可以包含浮动元素
+        触发BFC（给父级加），满足下面任意一种即可：
+
+            Float的值不是none;带来的问题：父级元素的父级元素宽度为0）
+
+            position的值不是static/relative;（带来的问题：父级元素的父级元素宽度为0）
+
+            display的值为：inline-block;table-cell/flex；
+
+            overflow的值不是visible;（带来的问题：IE6下不支持）
+
+        3.（最佳方案）给父级元素加class=Clearfix(固定的名字)
+
+        .clearfix::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        4.添加一个高度和宽度为0的div,作为子元素，并且清除浮动（可以兼容各种浏览器，但是会多一个无用的标签）
+     -->
+    <div class="parent clearfix">
+        <div class="child">
+
+        </div>
+    </div>
+</body>
+
+</html>

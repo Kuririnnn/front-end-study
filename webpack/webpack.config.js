@@ -1,5 +1,11 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const fs = require('fs');
+
+const loading = {
+    html: fs.readFileSync(path.join(__dirname, './src/loading/loading.html')),
+    css: `<style>${fs.readFileSync(path.join(__dirname, './src/loading/loading.css'))}</style>`
+}
 
 module.exports = {
     entry: path.join(__dirname, './src/main.js'),
@@ -10,7 +16,8 @@ module.exports = {
     plugins: [
         new htmlWebpackPlugin({
             template: path.join(__dirname, './src/index.html'),
-            filename: 'index.html'
+            filename: 'index.html',
+            loading: loading
         })
     ],
     module: {

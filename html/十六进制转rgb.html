@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>十六进制转rgb</title>
+    <style>
+        .row1, .row2{
+            display: flex;
+            align-items: center;
+        }
+        .oriColor, .newColor{
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>十六进制转rgb</h1>
+    <div class="row1">
+        <input id='input'/>
+        <button onclick="colorRgb()">转换</button>
+        <span class="oriColor" id='oriColor'></span>
+    </div>
+    <div class="row2">
+        <span>结果：</span>
+        <span id='result'></span>
+        <span class="newColor" id='newColor'></span>
+    </div>
+    <script>
+        function colorRgb () {
+            var v = document.getElementById('input').value;
+            if(!v) {
+                alert('未输入内容');
+                return;
+            }
+            // 16进制颜色值的正则
+            var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+            // 把颜色值变成小写
+            var color = v.toLowerCase();
+            if (reg.test(color)) {
+                document.getElementById('oriColor').style.background  = color;
+                // 如果只有三位的值，需变成六位，如：#fff => #ffffff
+                if (color.length === 4) {
+                    var colorNew = "#";
+                    for (var i = 1; i < 4; i += 1) {
+                        colorNew += color.slice(i, i + 1).concat(color.slice(i, i + 1));
+                    }
+                    color = colorNew;
+                }
+                // 处理六位的颜色值，转为RGB
+                var colorChange = [];
+                for (var i = 1; i < 7; i += 2) {
+                    colorChange.push(parseInt("0x" + color.slice(i, i + 2)));
+                }
+                var result = "RGB(" + colorChange.join(",") + ")";
+                document.getElementById('newColor').style.background  = result;
+                document.getElementById('result').innerHTML  = result;
+            } else {
+                alert('请输入正确内容');
+                return;
+            }
+        };
+
+    //     colorHexToRgba = (oColor) => {
+    //     let sColor = oColor.toLowerCase();
+    //     if (sColor) {
+    //         if (sColor.length === 4) {
+    //             let sColorNew = '#';
+    //             for (let i = 1; i < 4; i += 1) {
+    //                 sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+    //             }
+    //             sColor = sColorNew;
+    //         }
+    //         //处理六位的颜色值
+    //         let sColorChange = [];
+    //         for (let i = 1; i < 7; i += 2) {
+    //             sColorChange.push(parseInt('0x' + sColor.slice(i, i + 2)));
+    //         }
+    //         return 'RGBA(' + sColorChange.join(',') + ',0.5)';
+    //     } else {
+    //         return sColor;
+    //     }
+    // }
+    </script>
+</body>
+
+</html>

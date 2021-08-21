@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>margin合并</title>
+    <style type="text/css">
+        .parent {
+            background-color: red;
+            margin: 30px 0;
+        }
+
+        .child1 {
+            border: 1px solid blue;
+            margin: 30px;
+        }
+
+        .child2 {
+            border: 1px solid blue;
+            margin: 30px;
+        }
+
+        .div1 {
+            background: #000;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+
+        .div2 {
+            background: #000;
+            width: 200px;
+            height: 200px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        CSS中，margin-top和margin-botttom有一些特殊性。它们会在某种情况之间相互合并，并且会将值最大的那个当作外边距的值。 
+     -->
+    <!-- 
+         有时候，当使用弹性布局时，上下兄弟盒子的外边距不会合并。
+      -->
+    <!-- 
+
+        1. 水平margin不会合并。
+
+        2. 两个上下渲染相邻（不一定是兄弟节点）的块状元素在正常页面流情况下会发生 margin 合并。
+
+        3. 浮动元素不会和任何元素（包括子孙节点）发生 margin 合并。
+
+        4. overflow！=visible的元素不和任何元素发生margin合并。
+
+        5. 绝对定位的元素不和任何元素发生margin合并。
+
+        6. inline-block 的元素不和任何元素发生margin合并。
+
+        7. 设置 clear 属性的元素不和任何元素发生margin合并。
+
+        8. 根元素不和任何元素发生margin合并。
+
+        9. 父节点和第一个子节点发生margin-top合并。
+
+        10. 如果最后一个子节点没有border以及padding，则和其父节点发生margin-bottom合并
+       -->
+    <div class="div1"></div>
+    <div class="div2"></div>
+
+
+
+    <!-- 
+        去掉父子间外边距合并
+        1.父容器加边框
+        2.父容器加padding
+        3.父容器加overflow:hidden
+     -->
+    <div class="parent">
+        <div class="child1">第一个</div>
+        <div class="child2">第二个</div>
+    </div>
+</body>
+
+</html>
